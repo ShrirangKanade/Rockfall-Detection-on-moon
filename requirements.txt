@@ -1,6 +1,6 @@
 ﻿matplotlib==3.7.0
 numpy==1.23.5
 pillow==9.4.0
-streamlit==1.28.0
+streamlit==1.32.0
 ultralytics==8.1.20
 tensorflow==2.12.0
