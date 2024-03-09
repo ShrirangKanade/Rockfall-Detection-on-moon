@@ -11,7 +11,7 @@ st.markdown('#')
 @st.cache_resource
 def load_model():
 
-    model =  YOLO("best.pt")
+    model =  YOLO("best_full_integer_quant.tflite")
     return model
 
 
@@ -60,17 +60,18 @@ with tab3:
 st.write()
 selected_image = st.selectbox("Select an image", ["IMG1.tif","IMG2.tif", "IMG3.tif"])
 
-model = load_model()
-if selected_image in ["IMG1.tif","IMG2.tif","IMG3.tif"]:
-    input_imgs = Image.open(selected_image)
-    predicted= model_prediction(input_imgs,model)
+if st.button("Run Prediction"):
+    model = load_model()
+    if selected_image in ["IMG1.tif","IMG2.tif","IMG3.tif"]:
+        input_imgs = Image.open(selected_image)
+        predicted= model_prediction(input_imgs,model)
+        st.divider()
+        st.header("RockFalls Detected : ")
+        st.image(predicted)
+
     st.divider()
-    st.header("RockFalls Detected : ")
-    st.image(predicted)
-
-st.divider()
-
-st.write("## Made by Shrirang Kanade 😎")
+    
+    st.write("## Made by Shrirang Kanade 😎")
 
 
     
