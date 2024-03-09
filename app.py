@@ -6,20 +6,20 @@ import matplotlib.pyplot as plt
 
 st.title('🌑 Rockfall Detection on Moon ')
 st.markdown('#')
+
+# loading the model
 @st.cache_resource
 def load_model():
-# loading the model
-    # Paste Model link here...
+
     model =  YOLO("best.pt")
     return model
 
 
 def model_prediction(input_img,model):
     
-    predicted = model.predict(input_img,save=True)
+    predicted = model.predict(input_img)
     for i, r in enumerate(predicted):
-        # Plot results image
-        print(i)
+
         im_bgr = r.plot()  # BGR-order numpy array
         im_rgb = Image.fromarray(im_bgr[..., ::-1])  # RGB-order PIL image
         w,h = (im_rgb.size)
